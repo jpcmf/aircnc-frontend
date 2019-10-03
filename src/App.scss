@@ -46,11 +46,15 @@ body, input, button {
   form {
     display: flex;
     flex-direction: column;
-    
+
     label {
       color: #444;
       font-weight: bold;
       margin-bottom: 8px;
+
+      small {
+        color: #999;
+      }
     }
 
     input {
@@ -62,21 +66,25 @@ body, input, button {
       padding: 0 15px;
     }
 
-    button {
-      background-color: #f05a5b;
-      border-radius: 2px;
-      border: 0;
-      color: #fff;
-      cursor: pointer;
-      font-size: 16px;
-      height: 42px;
-      padding: 0 20px;
-      width: 100%;
-      transition: all 300ms ease;
+    a > .btn{
+      border: 1px solid #000;
+    }
+  }
 
-      &:hover {
-        background-color: #e14f50;
-      }
+  button.btn {
+    background-color: #f05a5b;
+    border-radius: 2px;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    height: 42px;
+    padding: 0 20px;
+    width: 100%;
+    transition: all 300ms ease;
+
+    &:hover {
+      background-color: #e14f50;
     }
   }
 }
