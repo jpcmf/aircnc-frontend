@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import './styles/colors.scss';
 
 * {
   box-sizing: border-box;
@@ -12,9 +13,10 @@ html, body, #root {
 }
 
 body {
-  background: #000 url('./assets/background.jpg') no-repeat;
+  background: #000 url('./assets/background-computer.jpg') no-repeat;
   background-size: cover;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body, input, button {
@@ -26,21 +28,35 @@ body, input, button {
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 80px auto;
-  max-width: 450px;
+  margin: 100px auto 0;
   width: 100%;
+
+  h1 {
+    color: $white;
+    font-size: 3em;
+    margin-top: 1.5em;
+    max-width: 800px;
+    text-align: center;
+    font-weight: 400;
+  }
 }
 
 .content {
-  width: 100%;
   background-color: #fff;
   margin-top: 50px;
   padding: 30px;
+  max-width: 450px;
+  width: 100%;
 
   > p {
     font-size: 22px;
     line-height: 30px;
     margin-bottom: 30px;
+
+    small {
+      display: block;
+      margin-top: 10px;
+    }
   }
 
   form {
@@ -72,7 +88,7 @@ body, input, button {
   }
 
   button.btn {
-    background-color: #f05a5b;
+    background-color:$blue;
     border-radius: 2px;
     border: 0;
     color: #fff;
@@ -84,7 +100,57 @@ body, input, button {
     transition: all 300ms ease;
 
     &:hover {
-      background-color: #e14f50;
+      background-color: darken($blue, 5%);
     }
+  }
+}
+
+#overlay {
+  // display: none;
+  background-color: rgba(25, 25, 25, 0.7);
+  bottom: 0;
+  cursor: pointer;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.react-tooltip-lite {
+  background: $gray1;
+  border-radius: 4px;
+  color: $white;
+}
+
+.react-tooltip-lite-arrow {
+  border-color: $gray1;
+}
+
+.logo {
+  height: 70px;
+}
+
+.btn-login {
+  // background-color:$blue;
+  border: solid 1px $blue;
+  border-radius: 2px;
+  color: $blue;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 11px 20px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms ease;
+  width: 120px;
+
+  &:hover {
+    background-color: $blue;
+    color: $white;
   }
 }

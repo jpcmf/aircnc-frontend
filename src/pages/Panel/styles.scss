@@ -1,0 +1,42 @@
+@import '../../styles/colors.scss';
+
+.panel {
+  display: flex;
+  flex-direction: column;
+
+  &__l, &__r {
+    background-color: ghostwhite;
+    // border: solid 1px #ddd;
+    border-radius: 4px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 20px 5px;
+
+    a {
+      color: $gray1;
+      text-decoration: none;
+    }
+
+     > div {
+      max-width: 150px;
+      width: 100%;
+      text-align: center;
+
+      small {
+        display: block;
+        margin-top: 10px;
+      }
+     }
+
+    img {
+      height: 90px;
+      margin: 0 20px ;
+    }
+  }
+
+  &__tooltip {
+    max-width: 200px;
+  }
+}

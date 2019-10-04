@@ -21,19 +21,21 @@ export default function Dashboard() {
 
   return (
     <>
-      <ul className='spot-list'>
-        {spots.map(spot => (
-          <li key={spot._id}>
-            <header style={{ backgroundImage: `url(${spot.thumb_url})` }} />
-            <strong>{spot.company}</strong>
-            <span>{spot.price ? `R$ ${spot.price}/dia` : 'GRATUITO'}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="content">
+        <ul className='spot-list'>
+          {spots.map(spot => (
+            <li key={spot._id}>
+              <header style={{ backgroundImage: `url(${spot.thumb_url})` }} />
+              <strong>{spot.company}</strong>
+              <span>{spot.price ? `R$ ${spot.price}/dia` : 'GRATUITO'}</span>
+            </li>
+          ))}
+        </ul>
 
-      <Link to='/new'>
-        <button className="btn">Cadastrar novo spot</button>
-      </Link>
+        <Link to='/new'>
+          <button className="btn">Cadastrar novo spot</button>
+        </Link>
+      </div>
     </>
   );
 }

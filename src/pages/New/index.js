@@ -1,15 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import api from '../../services/api';
+
 import camera from '../../assets/camera.svg';
 
 import './styles.scss';
-
 
 export default function New({ history }) {
   const [company, setCompany] = useState('');
   const [techs, setTechs] = useState('');
   const [price, setPrice] = useState('');
   const [thumb, setThumb] = useState(null);
+  const [cnj, setCnj] = useState('');
 
   const preview = useMemo(() => {
     return thumb ? URL.createObjectURL(thumb) : null;
@@ -25,6 +26,8 @@ export default function New({ history }) {
     data.append('company', company);
     data.append('techs', techs);
     data.append('price', price);
+    data.append('cnj', cnj);
+
 
     await api.post('/spots', data, {
       headers: { user_id }
@@ -34,48 +37,64 @@ export default function New({ history }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label id='thumb' style={{ backgroundImage: `url(${preview}` }} className={thumb ? 'has-thumb' : ''}>
+    <div className='content'>
+      <form onSubmit={handleSubmit}>
+        <label
+          id='thumb'
+          style={{ backgroundImage: `url(${preview}` }}
+          className={thumb ? 'has-thumb' : ''}
+        >
+          <input
+            type='file'
+            onChange={event => setThumb(event.target.files[0])}
+          />
+          <img src={camera} alt='icon-camera' />
+        </label>
+
+        <label htmlFor='cnj'>CNJ *</label>
         <input
-          type='file'
-          onChange={event => setThumb(event.target.files[0])}
+          type='text'
+          id='cnj'
+          placeholder='Informe o número do processo CNJ'
+          value={cnj}
+          onChange={event => setCnj(event.target.value)}
         />
-        <img src={camera} alt='icon-camera' />
-      </label>
-      <label htmlFor='company'>Empresa *</label>
-      <input
-        type='text'
-        id='company'
-        placeholder='Sua empresa incrível'
-        value={company}
-        onChange={event => setCompany(event.target.value)}
-      />
 
-      <label htmlFor='techs'>
-        Tecnologias * <small>(separadas por vírgula)</small>
-      </label>
-      <input
-        type='text'
-        id='techs'
-        placeholder='Quais tecnologias usam?'
-        value={techs}
-        onChange={event => setTechs(event.target.value)}
-      />
+        <label htmlFor='company'>Empresa *</label>
+        <input
+          type='text'
+          id='company'
+          placeholder='Sua empresa incrível'
+          value={company}
+          onChange={event => setCompany(event.target.value)}
+        />
 
-      <label htmlFor='price'>
-        Valor da diária * <small>(em branco para GRATUITO)</small>
-      </label>
-      <input
-        type='text'
-        id='price'
-        placeholder='Valor cobrado por dia'
-        value={price}
-        onChange={event => setPrice(event.target.value)}
-      />
+        {/* <label htmlFor='techs'>
+          Tecnologias * <small>(separadas por vírgula)</small>
+        </label>
+        <input
+          type='text'
+          id='techs'
+          placeholder='Quais tecnologias usam?'
+          value={techs}
+          onChange={event => setTechs(event.target.value)}
+        />
 
-      <button type='submit' className='btn'>
-        Cadastrar
-      </button>
-    </form>
+        <label htmlFor='price'>
+          Valor da diária * <small>(em branco para GRATUITO)</small>
+        </label>
+        <input
+          type='text'
+          id='price'
+          placeholder='Valor cobrado por dia'
+          value={price}
+          onChange={event => setPrice(event.target.value)}
+        /> */}
+
+        <button type='submit' className='btn'>
+          Solicitar
+        </button>
+      </form>
+    </div>
   );
 }
